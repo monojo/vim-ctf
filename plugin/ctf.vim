@@ -1,5 +1,4 @@
 func! s:CodeTraceFormat(type)
-    echoerr "CTF"
     let s:line_idx = 0
     "
     let s:indented_line_num = 0
@@ -22,12 +21,12 @@ func! s:CodeTraceFormat(type)
 
     let s:line_idx = l:begin
     while s:line_idx <= l:end
-        let current_line = getline(s:idx)
+        let current_line = getline(s:line_idx)
         if !empty(current_line)
             let s:offset = s:offset_base * s:indented_line_num
-            let s:cmd = string(s:idx)." le ".string(s:offset)
+            let s:cmd = string(s:line_idx)." le ".string(s:offset)
             exe s:cmd
-            let s:indented_line_numl +=1
+            let s:indented_line_num +=1
         endif
         let s:line_idx += 1
     endwhile
